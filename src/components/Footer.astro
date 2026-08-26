@@ -1,0 +1,37 @@
+---
+import { cities } from '../data/cities';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h4>Discount Holiday Lighting</h4>
+        <p style="max-width: 320px; opacity: 0.9;">
+          Premium LED holiday lighting and lit greenery across North Dallas. We sell it, hang it, keep it running all season, take it down, and store it until next year.
+        </p>
+      </div>
+      <div>
+        <h4>Service Area</h4>
+        <ul>
+          {cities.map((city) => (
+            <li><a href={`/service-area/${city.slug}`}>{city.name}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <h4>Get in touch</h4>
+        <ul>
+          <li><a href="tel:+14694094475">(469) 409-4475</a></li>
+          <li><a href="/contact">Request a free estimate</a></li>
+          <li><a href="/services">Services</a></li>
+          <li><a href="/greenery">Lit greenery</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {year} Discount Holiday Lighting. All rights reserved.</span>
+      <span>Licensed &amp; insured &middot; North Dallas, TX</span>
+    </div>
+  </div>
+</footer>
