@@ -1,0 +1,23 @@
+---
+const phone = '(469) 409-4475';
+const phoneHref = 'tel:+14694094475';
+---
+<header class="site-header">
+  <div class="wrap">
+    <a href="/" class="brand">
+      <img src="/images/holly-sprig-sign.png" alt="Discount Holiday Lighting holly mark" width="34" height="34" />
+      <span class="brand-name">
+        <span class="script">Discount</span>
+        HOLIDAY LIGHTING
+      </span>
+    </a>
+    <nav class="main-nav">
+      <a href="/services">Services</a>
+      <a href="/greenery">Greenery</a>
+      <a href="/gallery">Gallery</a>
+      <a href="/service-area">Service Area</a>
+      <a href="/contact">Contact</a>
+      <a href={phoneHref} class="btn btn--evergreen">Call {phone}</a>
+    </nav>
+  </div>
+</header>
