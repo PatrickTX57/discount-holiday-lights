@@ -1,0 +1,23 @@
+---
+// Slim "free estimate" capture bar. Rendered twice per page (under header, above footer)
+// on every page except /contact. Same Web3Forms + hCaptcha pattern as the full contact form.
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+---
+<div class="estimate-bar">
+  <div class="wrap">
+    <p>Lights up by Thanksgiving — free estimate, booked in minutes.</p>
+    <form
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="estimate-bar-form"
+      style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;"
+    >
+      <input type="hidden" name="access_key" value={accessKey} />
+      <input type="hidden" name="subject" value="New estimate request — Discount Holiday Lighting" />
+      <input type="text" name="name" placeholder="Name" required style="padding:10px 12px; border:2px solid #ccc3ac; min-width:140px;" />
+      <input type="tel" name="phone" placeholder="Phone" required style="padding:10px 12px; border:2px solid #ccc3ac; min-width:140px;" />
+      <div class="h-captcha" data-captcha="true"></div>
+      <button type="submit" class="btn btn--primary">Get a free estimate</button>
+    </form>
+  </div>
+</div>
