@@ -1,0 +1,84 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+---
+<BaseLayout
+  title="Contact &amp; Free Estimate"
+  description="Request a free estimate for premium LED holiday lighting installation across North Dallas. Call (469) 409-4475 or send your address and we'll follow up."
+  showForms={false}
+>
+  <section class="section section--white">
+    <div class="wrap">
+      <p class="hero-eyebrow" style="color: var(--sign-red);">Contact</p>
+      <h1>Request a free estimate</h1>
+      <p style="max-width: 620px; font-size: 1.05rem;">
+        Tell us your address and what you're thinking — roofline, trees, greenery, or all of it — and we'll follow up to schedule a walkthrough. Estimates are free and good for 30 days.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap contact-grid">
+      <div>
+        <form
+          id="contact-form"
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="form-grid"
+        >
+          <input type="hidden" name="access_key" value={accessKey} />
+          <input type="hidden" name="subject" value="New contact form submission — Discount Holiday Lighting" />
+          <input type="checkbox" name="botcheck" style="display:none;" />
+
+          <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div>
+            <label for="address">Address, city</label>
+            <input type="text" id="address" name="address" placeholder="123 Main St, Plano" required />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+          <div>
+            <label for="notes">Notes</label>
+            <textarea id="notes" name="notes" rows="4" placeholder="Roofline, trees, greenery — whatever you're thinking"></textarea>
+          </div>
+
+          <div class="h-captcha" data-captcha="true"></div>
+
+          <button type="submit" class="btn btn--primary">Request estimate</button>
+          <p class="form-note" id="form-status"></p>
+        </form>
+      </div>
+
+      <div>
+        <div class="card" style="padding: 28px;">
+          <h3>Or just call</h3>
+          <p style="font-size: 1.4rem; font-weight: 900; color: var(--sign-red);">
+            <a href="tel:+14694094475">(469) 409-4475</a>
+          </p>
+          <p>Free estimates &middot; North Dallas, Plano, Richardson, Allen, Highland Park, Lakewood, Preston Hollow.</p>
+          <a href="/service-area" class="text-link">Check your neighborhood</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    if (form) {
+      form.addEventListener('submit', (e) => {
+        const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]') as HTMLTextAreaElement | null;
+        if (!captchaResponse || !captchaResponse.value) {
+          e.preventDefault();
+          if (status) status.textContent = 'Please complete the captcha before submitting — thanks!';
+        }
+      });
+    }
+  </script>
+</BaseLayout>
+est
