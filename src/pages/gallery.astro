@@ -1,0 +1,50 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Real job photos — a house we actually lit, shot at blue hour, lights on. No stock imagery.
+const photos = [
+  { src: '/images/gallery/hero.jpg', alt: 'Two-story home with roofline lit in warm white LED at blue hour' },
+  { src: '/images/gallery/photo1.jpg', alt: 'Roofline lighting freshly installed, dusk' },
+  { src: '/images/gallery/photo2.jpg', alt: 'Entry columns and balcony lit with warm white LED' },
+  { src: '/images/gallery/photo3.jpg', alt: 'Front entry with lit wreath and garland' },
+  { src: '/images/gallery/photo4.jpg', alt: 'Lit wreath, garland and landscape lighting at the entry' },
+  { src: '/images/gallery/photo5.jpg', alt: 'Roofline and fence line lit with warm white LED at night' },
+];
+---
+<BaseLayout
+  title="Gallery"
+  description="Real houses we've lit across North Dallas — installed at blue hour, warm white LED."
+>
+  <section class="section section--white">
+    <div class="wrap">
+      <p class="hero-eyebrow" style="color: var(--sign-red);">Gallery</p>
+      <h1>Houses we've actually lit.</h1>
+      <p style="max-width: 640px; font-size: 1.05rem;">
+        Every photo here is a real job, shot at blue hour with the lights on — no stock photography, no illustrations.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="card-grid">
+        {photos.map((photo) => (
+          <div class="photo-real photo-real--wide">
+            <img src={photo.src} alt={photo.alt} loading="lazy" />
+          </div>
+        ))}
+      </div>
+      <p class="form-note" style="margin-top: 24px;">
+        More photos are added as each job wraps for the season — ask to see recent work when you call for your estimate.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--evergreen">
+    <div class="wrap" style="text-align:center;">
+      <h2>Want your house in the gallery next?</h2>
+      <a href="/contact" class="btn btn--primary" style="margin-top: 12px;">Get a free estimate</a>
+    </div>
+  </section>
+</BaseLayout>
+est
