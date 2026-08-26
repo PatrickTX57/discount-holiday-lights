@@ -1,0 +1,75 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { cities } from '../../data/cities';
+
+export function getStaticPaths() {
+  return cities.map((city) => ({
+    params: { city: city.slug },
+    props: { city },
+  }));
+}
+
+const { city } = Astro.props;
+---
+<BaseLayout
+  title={`Holiday Lighting in ${city.name}, TX`}
+  description={`Premium LED holiday lighting installation, maintenance, take-down and storage for homes in ${city.name}, TX. Free estimates from Discount Holiday Lighting.`}
+>
+  <section class="section section--white">
+    <div class="wrap">
+      <p class="hero-eyebrow" style="color: var(--sign-red);">{city.region}</p>
+      <h1>Holiday lighting in {city.name}</h1>
+      <p style="max-width: 640px; font-size: 1.05rem;">{city.intro}</p>
+      <div class="hero-actions">
+        <a href="/contact" class="btn btn--primary">Get a free estimate</a>
+        <a href="tel:+14694094475" class="btn btn--outline-dark">Call (469) 409-4475</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <h2>What we install in {city.name}</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-body">
+            <h3>Roofline &amp; second-story lighting</h3>
+            <p>Commercial-grade LED along the roofline, priced per linear foot.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>Trees &amp; landscape lighting</h3>
+            <p>Trunk-wrapped trees and landscape accents, quoted after a walkthrough.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h3>Lit wreaths &amp; garland</h3>
+            <p>24&Prime;, 36&Prime; and 48&Prime; wreaths, 9&prime; lit garland, bows and decorations.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--evergreen">
+    <div class="wrap" style="text-align:center;">
+      <h2>Booked by November in {city.name}.</h2>
+      <p style="max-width: 480px; margin: 0 auto 24px;">Estimates are free and good for 30 days.</p>
+      <a href="/contact" class="btn btn--primary">Request a free estimate</a>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <h2>Also serving nearby</h2>
+      <div class="city-grid">
+        {cities.filter((c) => c.slug !== city.slug).map((c) => (
+          <a href={`/service-area/${c.slug}`} class="city-chip">{c.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+est
