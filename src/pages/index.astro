@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { cities } from '../data/cities';
+---
+<BaseLayout
+  title="Premium LED Holiday Lighting | North Dallas"
+  description="Discount Holiday Lighting installs premium LED holiday lighting and lit greenery across North Dallas. We sell it, hang it, maintain it all season, take it down, and store it until next year. Free estimates."
+>
+  <section class="hero hero--photo" style="background-image: url('/images/gallery/hero.jpg');">
+    <div class="wrap">
+      <div class="hero-inner">
+        <p class="hero-eyebrow">North Dallas &middot; Free Estimates</p>
+        <h1>Lights up by Thanksgiving.</h1>
+        <p style="font-size: 1.15rem; opacity: 0.92;">
+          Premium LED holiday lighting and lit greenery — installed, maintained all season, taken down in January, and stored until next year.
+        </p>
+        <div class="hero-actions">
+          <a href="/contact" class="btn btn--primary">Get a free estimate</a>
+          <a href="tel:+14694094475" class="btn btn--outline">Call (469) 409-4475</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="wrap">
+      <div class="badge-list">
+        <span class="badge">Commercial-Grade LED</span>
+        <span class="badge">Installed &amp; Maintained</span>
+        <span class="badge">We Store It For You</span>
+      </div>
+      <h2>Affordable is how we win the call. Premium is why they call again.</h2>
+      <p style="max-width: 640px;">
+        Residential holiday lighting sales, installation, maintenance, take-down and storage — plus lit greenery: wreaths, garland, bows and other decorations. Every price includes premium LED product, installation, season-long maintenance, take-down and storage.
+      </p>
+      <a href="/services" class="btn btn--outline-dark">See all services</a>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <h2>What we do</h2>
+      <div class="card-grid">
+        <div class="card">
+          <div class="photo-real"><img src="/images/gallery/photo1.jpg" alt="Roofline lit with premium LED at dusk" loading="lazy" /></div>
+          <div class="card-body">
+            <h3>Lighting installation</h3>
+            <p>Roofline, second story, trees and landscape — hung clean, powered up, and checked before we leave.</p>
+            <a href="/services" class="text-link">See lighting services</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo-real"><img src="/images/gallery/photo3.jpg" alt="Lit entry and columns, season-long maintenance included" loading="lazy" /></div>
+          <div class="card-body">
+            <h3>Maintenance, take-down &amp; storage</h3>
+            <p>A bulb goes out in January, we come back. That's part of the price, not an add-on. Take-down and off-season storage included.</p>
+            <a href="/services" class="text-link">How it works</a>
+          </div>
+        </div>
+        <div class="card">
+          <div class="photo-real"><img src="/images/gallery/photo4.jpg" alt="Lit wreath and garland on the entry" loading="lazy" /></div>
+          <div class="card-body">
+            <h3>Lit greenery</h3>
+            <p>Premium LED wreaths in 24&Prime;, 36&Prime; and 48&Prime;, 9&prime; lit garland, bows and other decorations.</p>
+            <a href="/greenery" class="text-link">See lit greenery</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--evergreen">
+    <div class="wrap">
+      <h2>Serving North Dallas</h2>
+      <p style="max-width: 640px; opacity: 0.9;">
+        Established neighborhoods, mature trees, tall rooflines, high standards. If your street isn't listed, call us — we're usually close by.
+      </p>
+      <div class="city-grid" style="margin-top: 24px;">
+        {cities.map((city) => (
+          <a href={`/service-area/${city.slug}`} class="city-chip" style="background:#fff;">{city.name}</a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--red">
+    <div class="wrap" style="text-align:center;">
+      <h2>Free estimates. Booked by November.</h2>
+      <p style="max-width: 520px; margin: 0 auto 24px;">
+        Discount Holiday Lighting installs premium LED holiday lighting and lit greenery across North Dallas. We sell it, hang it, keep it running all season, take it down, and store it until next year.
+      </p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="/contact" class="btn btn--outline">Request a free estimate</a>
+        <a href="tel:+14694094475" class="btn btn--evergreen">(469) 409-4475</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+est
