@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { cities } from '../../data/cities';
+---
+<BaseLayout
+  title="Service Area"
+  description="Discount Holiday Lighting installs premium LED holiday lighting across North Dallas, Plano, Richardson, Allen, Highland Park, Lakewood and Preston Hollow."
+>
+  <section class="section section--white">
+    <div class="wrap">
+      <p class="hero-eyebrow" style="color: var(--sign-red);">Service Area</p>
+      <h1>Where we work</h1>
+      <p style="max-width: 640px; font-size: 1.05rem;">
+        Established neighborhoods, mature trees, tall rooflines, high standards. If your street isn't listed, call us anyway — we're usually close by.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--cream">
+    <div class="wrap">
+      <div class="card-grid">
+        {cities.map((city) => (
+          <div class="card">
+            <div class="card-body">
+              <h3>{city.name}</h3>
+              <p>{city.region}</p>
+              <a href={`/service-area/${city.slug}`} class="text-link">See {city.name} details</a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--red">
+    <div class="wrap" style="text-align:center;">
+      <h2>Free estimate for your address</h2>
+      <a href="/contact" class="btn btn--outline" style="margin-top: 12px;">Request a free estimate</a>
+    </div>
+  </section>
+</BaseLayout>
+est
