@@ -99,10 +99,34 @@ const { title, description } = Astro.props;
 
       /* Hero */
       .lp-hero {
+        position: relative;
         background: linear-gradient(135deg, #0E2E20 0%, var(--lp-spruce) 60%, #0c231a 100%);
         color: #fff;
         padding: 56px 0 48px;
+        overflow: hidden;
       }
+      .lp-hero--photo {
+        background-size: cover;
+        background-position: center 35%;
+      }
+      .lp-hero--photo::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(100deg, rgba(14,46,32,0.94) 0%, rgba(14,46,32,0.75) 45%, rgba(14,46,32,0.35) 100%);
+      }
+      .lp-hero--photo .lp-hero-grid { position: relative; }
+      .lp-photo-real {
+        aspect-ratio: 4 / 3;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+      .lp-photo-real img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .lp-photo-real--wide { aspect-ratio: 3 / 2; }
       .lp-hero-grid {
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
