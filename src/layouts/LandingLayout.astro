@@ -1,0 +1,252 @@
+---
+// Standalone layout for paid-traffic landing pages (Google Ads / Facebook Ads).
+// Deliberately excludes site nav, footer links, and gallery/service-area pages —
+// these are conversion-focused, single-purpose pages meant to be reached only via
+// ad click, never browsed to from the main site. noindex so they don't compete
+// with the main site's SEO or show up in organic search.
+//
+// Uses the *new* approved brand system (Spruce Green / Gold, Prata + Work Sans)
+// from the Sept 2026 brand guidelines — the rest of the live site still uses the
+// old red/evergreen palette pending a full site-wide rebrand (tracked separately).
+interface Props {
+  title: string;
+  description: string;
+  campaignLabel: string; // e.g. "Google Ads" or "Facebook Ads" — shown nowhere on page, for clarity in source only
+}
+const { title, description } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="/images/holly-sprig-sign.png" />
+
+    <title>{title} | Discount Holiday Lights</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="noindex, nofollow" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <script src="https://web3forms.com/client/script.js" async defer></script>
+
+    <style is:global>
+      :root {
+        --lp-spruce: #17402C;
+        --lp-spruce-hover: #102E20;
+        --lp-gold: #E0A526;
+        --lp-gold-hover: #C08B1C;
+        --lp-cream: #F7F3EC;
+        --lp-ink: #1A1817;
+        --lp-font-display: 'Prata', Georgia, serif;
+        --lp-font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        margin: 0;
+        font-family: var(--lp-font-body);
+        color: var(--lp-ink);
+        background: #fff;
+        line-height: 1.55;
+      }
+      h1, h2, h3 {
+        font-family: var(--lp-font-display);
+        font-weight: 400;
+        margin: 0 0 16px;
+        line-height: 1.15;
+        color: var(--lp-spruce);
+      }
+      h1 { font-size: clamp(2rem, 5vw, 3rem); }
+      h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); }
+      p { margin: 0 0 16px; }
+      img { max-width: 100%; display: block; }
+      a { color: inherit; }
+      .lp-wrap { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+      /* Minimal header: logo + phone only, no nav */
+      .lp-header {
+        background: var(--lp-spruce);
+        padding: 16px 0;
+      }
+      .lp-header .lp-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .lp-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: #fff;
+        font-family: var(--lp-font-display);
+        font-size: 1.15rem;
+      }
+      .lp-brand img { height: 30px; width: auto; }
+      .lp-phone {
+        color: #fff;
+        font-weight: 700;
+        font-size: 1.05rem;
+        white-space: nowrap;
+      }
+      .lp-phone span { color: var(--lp-gold); }
+
+      /* Hero */
+      .lp-hero {
+        background: linear-gradient(135deg, #0E2E20 0%, var(--lp-spruce) 60%, #0c231a 100%);
+        color: #fff;
+        padding: 56px 0 48px;
+      }
+      .lp-hero-grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .lp-hero-grid { grid-template-columns: 1fr; }
+      }
+      .lp-eyebrow {
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--lp-gold);
+        margin-bottom: 10px;
+      }
+      .lp-hero h1 { color: #fff; }
+      .lp-sub { font-size: 1.1rem; opacity: 0.92; max-width: 480px; }
+      .lp-badges { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 0; }
+      .lp-badge {
+        border: 2px solid var(--lp-gold);
+        color: #fff;
+        padding: 6px 14px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+      }
+
+      /* Photo block placeholders — swap with real CompanyCam photos (approved set in Notion) */
+      .lp-photo-block {
+        aspect-ratio: 4 / 3;
+        background: linear-gradient(160deg, var(--lp-spruce) 0%, #1c4a36 100%);
+        display: flex;
+        align-items: flex-end;
+        padding: 16px;
+        color: var(--lp-cream);
+        border: 1px solid rgba(255,255,255,0.15);
+      }
+      .lp-photo-label { font-size: 0.8rem; font-weight: 700; opacity: 0.85; }
+
+      /* Form card */
+      .lp-form-card {
+        background: #fff;
+        color: var(--lp-ink);
+        padding: 28px;
+        border-top: 6px solid var(--lp-gold);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+      }
+      .lp-form-card h3 { margin-bottom: 4px; }
+      .lp-form-card .lp-form-note { font-size: 0.9rem; opacity: 0.75; margin-bottom: 18px; }
+      .lp-form-grid { display: grid; gap: 14px; }
+      .lp-form-grid label {
+        display: block;
+        font-weight: 700;
+        font-size: 0.85rem;
+        margin-bottom: 5px;
+        color: var(--lp-spruce);
+      }
+      .lp-form-grid input,
+      .lp-form-grid textarea {
+        width: 100%;
+        padding: 12px 14px;
+        border: 2px solid #ddd6c8;
+        font-family: var(--lp-font-body);
+        font-size: 1rem;
+      }
+      .lp-form-grid input:focus,
+      .lp-form-grid textarea:focus {
+        outline: none;
+        border-color: var(--lp-gold);
+      }
+      .lp-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        padding: 15px 28px;
+        background: var(--lp-gold);
+        color: var(--lp-ink);
+        border: none;
+        font-family: var(--lp-font-body);
+        font-weight: 700;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: background-color 0.15s ease;
+      }
+      .lp-btn:hover { background: var(--lp-gold-hover); }
+      .lp-form-status { font-size: 0.85rem; opacity: 0.75; margin-top: 10px; }
+
+      /* Sections */
+      .lp-section { padding: 56px 0; }
+      .lp-section--cream { background: var(--lp-cream); }
+      .lp-section--spruce { background: var(--lp-spruce); color: #fff; }
+      .lp-section--spruce h2 { color: #fff; }
+      .lp-benefits {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        margin-top: 28px;
+      }
+      @media (max-width: 860px) {
+        .lp-benefits { grid-template-columns: 1fr; }
+      }
+      .lp-benefit h3 { font-family: var(--lp-font-body); font-weight: 700; font-size: 1.05rem; color: var(--lp-spruce); }
+      .lp-section--spruce .lp-benefit h3 { color: var(--lp-gold); }
+      .lp-gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        margin-top: 24px;
+      }
+      @media (max-width: 760px) {
+        .lp-gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      }
+
+      /* Minimal footer: legal line only, no nav links to rest of site */
+      .lp-footer {
+        background: var(--lp-ink);
+        color: rgba(255,255,255,0.75);
+        padding: 22px 0;
+        font-size: 0.82rem;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="lp-header">
+      <div class="lp-wrap">
+        <div class="lp-brand">
+          <img src="/images/holly-sprig-sign.png" alt="Discount Holiday Lights" />
+          <span>Discount Holiday Lights</span>
+        </div>
+        <a href="tel:+14694094475" class="lp-phone">Call now: <span>(469) 409-4475</span></a>
+      </div>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="lp-footer">
+      <div class="lp-wrap">
+        &copy; {new Date().getFullYear()} Discount Holiday Lights &middot; Licensed &amp; insured &middot; North Dallas, TX
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+---
+// Shared lead-capture form for paid-traffic landing pages.
+// Same Web3Forms endpoint/access key as the rest of the site, tagged with a
+// distinct "subject" per source so leads are identifiable in the inbox.
+interface Props {
+  source: string; // "Google Ads Landing Page" | "Facebook Ads Landing Page"
+  formId: string;
+  ctaLabel?: string;
+}
+const { source, formId, ctaLabel = 'Get My Free Estimate' } = Astro.props;
+const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
+---
+<div class="lp-form-card">
+  <h3>Get Your Free Estimate</h3>
+  <p class="lp-form-note">No obligation. We'll follow up to schedule a walkthrough — estimates are good for 30 days.</p>
+  <form
+    id={formId}
+    action="https://api.web3forms.com/submit"
+    method="POST"
+    class="lp-form-grid"
+  >
+    <input type="hidden" name="access_key" value={accessKey} />
+    <input type="hidden" name="subject" value={`New lead — ${source}`} />
+    <input type="hidden" name="lead_source" value={source} />
+    <input type="checkbox" name="botcheck" style="display:none;" />
+
+    <div>
+      <label for={`${formId}-name`}>Name</label>
+      <input type="text" id={`${formId}-name`} name="name" required />
+    </div>
+    <div>
+      <label for={`${formId}-phone`}>Phone</label>
+      <input type="tel" id={`${formId}-phone`} name="phone" required />
+    </div>
+    <div>
+      <label for={`${formId}-address`}>Address or neighborhood</label>
+      <input type="text" id={`${formId}-address`} name="address" placeholder="123 Main St, Plano" required />
+    </div>
+
+    <div class="h-captcha" data-captcha="true"></div>
+
+    <button type="submit" class="lp-btn">{ctaLabel}</button>
+    <p class="lp-form-status" id={`${formId}-status`}></p>
+  </form>
+</div>
+
+<script define:vars={{ formId }}>
+  const form = document.getElementById(formId);
+  const status = document.getElementById(`${formId}-status`);
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      const captchaResponse = form.querySelector('textarea[name="h-captcha-response"]');
+      if (!captchaResponse || !captchaResponse.value) {
+        e.preventDefault();
+        if (status) status.textContent = 'Please complete the captcha before submitting — thanks!';
+      }
+    });
+  }
+</script>

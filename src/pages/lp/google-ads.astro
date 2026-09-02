@@ -1,0 +1,75 @@
+---
+// Google Ads landing page. Search-intent traffic: keep it fast, answer
+// "what do I get and what does it cost" immediately, form above the fold.
+// Not linked anywhere on the site — reached only via ad click. URL referenced
+// in Notion for use in Google Ads campaign setup.
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import LandingForm from '../../components/LandingForm.astro';
+---
+<LandingLayout
+  title="Premium Holiday Lighting Installation — North Dallas"
+  description="Professional LED holiday lighting installation, maintenance, take-down, and storage for North Dallas homes. Free estimate, licensed and insured crews."
+  campaignLabel="Google Ads"
+>
+  <section class="lp-hero">
+    <div class="lp-wrap lp-hero-grid">
+      <div>
+        <p class="lp-eyebrow">North Dallas &middot; Plano &middot; Richardson &middot; Allen</p>
+        <h1>Premium LED Holiday Lighting, Installed for You</h1>
+        <p class="lp-sub">
+          Commercial-grade C9 roofline lighting and lit greenery — installed, maintained all season,
+          taken down, and stored until next year. One call books the whole season.
+        </p>
+        <div class="lp-badges">
+          <span class="lp-badge">Licensed &amp; Insured</span>
+          <span class="lp-badge">Free Estimate</span>
+          <span class="lp-badge">Storage Included</span>
+        </div>
+      </div>
+      <div>
+        <LandingForm source="Google Ads Landing Page" formId="google-ads-form" />
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream">
+    <div class="lp-wrap">
+      <h2>What's included, every time</h2>
+      <div class="lp-benefits">
+        <div class="lp-benefit">
+          <h3>Installation</h3>
+          <p>Commercial-grade C9 bulbs on rooflines, windows, and walkways; mini lights on trees and bushes. Hung by our crew — no ladders for you.</p>
+        </div>
+        <div class="lp-benefit">
+          <h3>Season-long maintenance</h3>
+          <p>We check and fix outages throughout the season, so your display stays lit through New Year's.</p>
+        </div>
+        <div class="lp-benefit">
+          <h3>Take-down &amp; storage</h3>
+          <p>We take everything down after the season and store it for you — included in every price, not an upsell.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--spruce">
+    <div class="lp-wrap">
+      <h2>Recent installs</h2>
+      <div class="lp-gallery-grid">
+        <div class="lp-photo-block"><span class="lp-photo-label">Plano &middot; roofline C9</span></div>
+        <div class="lp-photo-block"><span class="lp-photo-label">Dallas &middot; wreaths &amp; garland</span></div>
+        <div class="lp-photo-block"><span class="lp-photo-label">Richardson &middot; full display</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream">
+    <div class="lp-wrap" style="text-align:center;">
+      <h2>Get your free estimate</h2>
+      <p style="max-width:520px; margin:0 auto 24px;">Tell us your address — we'll follow up to schedule a walkthrough. Estimates are free and good for 30 days.</p>
+      <div style="max-width:480px; margin:0 auto;">
+        <LandingForm source="Google Ads Landing Page" formId="google-ads-form-bottom" ctaLabel="Get My Free Estimate" />
+      </div>
+    </div>
+  </section>
+</LandingLayout>

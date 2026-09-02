@@ -1,0 +1,74 @@
+---
+// Facebook/Meta Ads landing page. Interruption-based traffic — lead with the
+// visual/lifestyle payoff before the feature list, since visitors didn't search
+// for this. Not linked anywhere on the site — reached only via ad click. URL
+// referenced in Notion for use in Meta Ads campaign setup.
+import LandingLayout from '../../layouts/LandingLayout.astro';
+import LandingForm from '../../components/LandingForm.astro';
+---
+<LandingLayout
+  title="Your Home, Lit Up This Season — North Dallas"
+  description="See what premium holiday lighting looks like on North Dallas homes. Free estimate — we install, maintain, take down, and store it for you."
+  campaignLabel="Facebook Ads"
+>
+  <section class="lp-hero">
+    <div class="lp-wrap" style="text-align:center; max-width:720px; margin:0 auto;">
+      <p class="lp-eyebrow">North Dallas homeowners</p>
+      <h1>Imagine Your Home Like This — Without Lifting a Ladder</h1>
+      <p class="lp-sub" style="margin:0 auto 8px; max-width:560px;">
+        Premium LED rooflines and lit greenery, installed and maintained for you, taken down and stored
+        when the season's over. Free estimate — no obligation.
+      </p>
+      <div class="lp-badges" style="justify-content:center;">
+        <span class="lp-badge">No Ladders</span>
+        <span class="lp-badge">Free Estimate</span>
+        <span class="lp-badge">Licensed &amp; Insured</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream">
+    <div class="lp-wrap">
+      <h2>Real North Dallas installs</h2>
+      <div class="lp-gallery-grid">
+        <div class="lp-photo-block lp-photo-block--wide"><span class="lp-photo-label">Plano</span></div>
+        <div class="lp-photo-block"><span class="lp-photo-label">Dallas</span></div>
+        <div class="lp-photo-block"><span class="lp-photo-label">Richardson</span></div>
+        <div class="lp-photo-block"><span class="lp-photo-label">Frisco</span></div>
+        <div class="lp-photo-block lp-photo-block--wide"><span class="lp-photo-label">Allen</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--spruce">
+    <div class="lp-wrap" style="text-align:center;">
+      <h2 style="color:#fff;">Get Your Free Estimate</h2>
+      <p style="max-width:520px; margin:0 auto 24px; opacity:0.9;">
+        Tell us a little about your home and we'll follow up to schedule a walkthrough.
+      </p>
+      <div style="max-width:480px; margin:0 auto;">
+        <LandingForm source="Facebook Ads Landing Page" formId="facebook-ads-form" />
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream">
+    <div class="lp-wrap">
+      <h2>Why homeowners switch to us</h2>
+      <div class="lp-benefits">
+        <div class="lp-benefit">
+          <h3>Premium product, handled for you</h3>
+          <p>Commercial-grade LED and full-bodied greenery — not the extension-cord version — installed and removed without you doing any of the physical work.</p>
+        </div>
+        <div class="lp-benefit">
+          <h3>One call books the season</h3>
+          <p>Sales, install, maintenance, take-down, and storage — one relationship, not a series of separate purchases.</p>
+        </div>
+        <div class="lp-benefit">
+          <h3>We know North Dallas</h3>
+          <p>Established neighborhoods, mature trees, and tall rooflines — specifically what our crew is equipped for.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</LandingLayout>
