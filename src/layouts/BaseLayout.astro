@@ -19,9 +19,9 @@ const {
 } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
-const fullTitle = title.includes('Discount Holiday Lighting')
+const fullTitle = title.includes('Discount Holiday Lights')
   ? title
-  : `${title} | Discount Holiday Lighting`;
+  : `${title} | Discount Holiday Lights`;
 ---
 <!doctype html>
 <html lang="en">
@@ -48,6 +48,7 @@ const fullTitle = title.includes('Discount Holiday Lighting')
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Prata&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet" />
 
     <script src="https://web3forms.com/client/script.js" async defer></script>
   </head>
@@ -61,4 +62,4 @@ const fullTitle = title.includes('Discount Holiday Lighting')
     <Footer />
   </body>
 </html>
-est
+
