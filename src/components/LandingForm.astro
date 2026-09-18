@@ -2,12 +2,33 @@
 // Shared lead-capture form for paid-traffic landing pages.
 // Same Web3Forms endpoint/access key as the rest of the site, tagged with a
 // distinct "subject" per source so leads are identifiable in the inbox.
+//
+// The third field defaults to "Address or neighborhood" (used by the
+// Facebook Ads page). The Google Ads page overrides it to a Zip Code field
+// via the location* props below — pass them to swap the field on any page
+// without touching the others.
 interface Props {
   source: string; // "Google Ads Landing Page" | "Facebook Ads Landing Page"
   formId: string;
   ctaLabel?: string;
+  locationLabel?: string;
+  locationName?: string;
+  locationPlaceholder?: string;
+  locationInputMode?: string;
+  locationPattern?: string;
+  locationMaxLength?: number;
 }
-const { source, formId, ctaLabel = 'Get My Free Estimate' } = Astro.props;
+const {
+  source,
+  formId,
+  ctaLabel = 'Get My Free Estimate',
+  locationLabel = 'Address or neighborhood',
+  locationName = 'address',
+  locationPlaceholder = '123 Main St, Plano',
+  locationInputMode,
+  locationPattern,
+  locationMaxLength,
+} = Astro.props;
 const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
 ---
 <div class="lp-form-card">
@@ -33,8 +54,17 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
       <input type="tel" id={`${formId}-phone`} name="phone" required />
     </div>
     <div>
-      <label for={`${formId}-address`}>Address or neighborhood</label>
-      <input type="text" id={`${formId}-address`} name="address" placeholder="123 Main St, Plano" required />
+      <label for={`${formId}-location`}>{locationLabel}</label>
+      <input
+        type="text"
+        id={`${formId}-location`}
+        name={locationName}
+        placeholder={locationPlaceholder}
+        inputmode={locationInputMode}
+        pattern={locationPattern}
+        maxlength={locationMaxLength}
+        required
+      />
     </div>
 
     <div class="h-captcha" data-captcha="true"></div>

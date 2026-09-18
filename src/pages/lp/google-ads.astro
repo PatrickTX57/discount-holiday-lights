@@ -3,15 +3,64 @@
 // "what do I get and what does it cost" immediately, form above the fold.
 // Not linked anywhere on the site — reached only via ad click. URL referenced
 // in Notion for use in Google Ads campaign setup.
+//
+// Sept 2026 update: added an FAQ section and several more CTAs throughout
+// (banner CTAs, click-to-call, sticky mobile bar) so there's always a low-
+// friction next step, and swapped the third form field to Zip Code.
 import LandingLayout from '../../layouts/LandingLayout.astro';
 import LandingForm from '../../components/LandingForm.astro';
+
+const faqs = [
+  {
+    q: "How much does holiday lighting installation cost?",
+    a: "Every home is different — the length of your roofline, how many stories, and how much greenery you want all affect the price. That's why we start with a free, no-obligation on-site estimate. Your quoted price is good for 30 days, so you can lock it in without rushing.",
+  },
+  {
+    q: "Is take-down and storage really included?",
+    a: "Yes. Every price includes taking everything down after the season and storing it for you until next year — it's not an upsell or add-on fee.",
+  },
+  {
+    q: "What happens if a bulb goes out during the season?",
+    a: "We check your display and fix any outages throughout the season, so your home stays fully lit through New Year's — you won't need to call us every time a bulb burns out.",
+  },
+  {
+    q: "Will installation damage my roof, gutters, or siding?",
+    a: "No. Our crew uses clip-based mounting systems designed to attach to your roofline, gutters, and trim without puncturing or damaging them — and we do all the climbing, so you never need to get on a ladder.",
+  },
+  {
+    q: "Are you licensed and insured?",
+    a: "Yes — Discount Holiday Lights is fully licensed and insured, so you're covered if anything unexpected happens during installation or take-down.",
+  },
+  {
+    q: "What areas do you serve?",
+    a: "We install throughout North Dallas, including Plano, Richardson, and Allen and the surrounding neighborhoods.",
+  },
+  {
+    q: "When should I book to make sure I'm ready for the holidays?",
+    a: "Installation slots fill up as the season gets closer, so the earlier you request your free estimate, the more likely we can get you scheduled at a time that works for you.",
+  },
+  {
+    q: "Is the estimate really free, with no obligation?",
+    a: "Yes — your on-site estimate is completely free, and there's no obligation to book. We'll walk your property, show you what we recommend, and give you a firm price valid for 30 days.",
+  },
+];
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faqs.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
 ---
 <LandingLayout
   title="Premium Holiday Lighting Installation — North Dallas"
   description="Professional LED holiday lighting installation, maintenance, take-down, and storage for North Dallas homes. Free estimate, licensed and insured crews."
   campaignLabel="Google Ads"
 >
-  <section class="lp-hero lp-hero--photo" style="background-image: url('/images/companycam/01-project_111923238_08102026_2041.jpeg');">
+  <section class="lp-hero lp-hero--photo" style="background-image: url('/images/companycam/01-project_111923238_08102026_2041.jpeg');" id="get-estimate">
     <div class="lp-wrap lp-hero-grid">
       <div>
         <p class="lp-eyebrow">North Dallas &middot; Plano &middot; Richardson &middot; Allen</p>
@@ -27,7 +76,16 @@ import LandingForm from '../../components/LandingForm.astro';
         </div>
       </div>
       <div>
-        <LandingForm source="Google Ads Landing Page" formId="google-ads-form" />
+        <LandingForm
+          source="Google Ads Landing Page"
+          formId="google-ads-form"
+          locationLabel="Zip Code"
+          locationName="zip_code"
+          locationPlaceholder="75024"
+          locationInputMode="numeric"
+          locationPattern="[0-9]{5}"
+          locationMaxLength={5}
+        />
       </div>
     </div>
   </section>
@@ -52,6 +110,14 @@ import LandingForm from '../../components/LandingForm.astro';
     </div>
   </section>
 
+  <section class="lp-cta-banner">
+    <div class="lp-wrap">
+      <h2>No Ladders, No Hassle — Just a Lit-Up House All Season</h2>
+      <p>Get a free, no-obligation estimate and see exactly what your home could look like this holiday season.</p>
+      <a href="#get-estimate" class="lp-btn lp-btn--inline">Get My Free Estimate &rarr;</a>
+    </div>
+  </section>
+
   <section class="lp-section lp-section--spruce">
     <div class="lp-wrap">
       <h2>Recent installs</h2>
@@ -70,12 +136,196 @@ import LandingForm from '../../components/LandingForm.astro';
   </section>
 
   <section class="lp-section lp-section--cream">
-    <div class="lp-wrap" style="text-align:center;">
-      <h2>Get your free estimate</h2>
-      <p style="max-width:520px; margin:0 auto 24px;">Tell us your address — we'll follow up to schedule a walkthrough. Estimates are free and good for 30 days.</p>
-      <div style="max-width:480px; margin:0 auto;">
-        <LandingForm source="Google Ads Landing Page" formId="google-ads-form-bottom" ctaLabel="Get My Free Estimate" />
+    <div class="lp-wrap">
+      <h2>Why homeowners choose us</h2>
+      <div class="lp-why-grid">
+        <div class="lp-why-item">
+          <h3>Licensed &amp; insured</h3>
+          <p>Full coverage on every job — no risk to you or your property.</p>
+        </div>
+        <div class="lp-why-item">
+          <h3>One call books the whole season</h3>
+          <p>Installation, maintenance, take-down, and storage — all handled, start to finish.</p>
+        </div>
+        <div class="lp-why-item">
+          <h3>No upsells</h3>
+          <p>Take-down and storage are included in your price from day one, not tacked on later.</p>
+        </div>
+        <div class="lp-why-item">
+          <h3>Local North Dallas crew</h3>
+          <p>Serving Plano, Richardson, Allen, and the surrounding neighborhoods.</p>
+        </div>
       </div>
     </div>
   </section>
+
+  <section class="lp-cta-banner">
+    <div class="lp-wrap">
+      <h2>Prefer to Talk It Through First?</h2>
+      <p>Call us directly and we'll answer your questions on the spot — or get your free estimate online.</p>
+      <div class="lp-cta-banner-actions">
+        <a href="tel:+14694094475" class="lp-btn lp-btn--outline">Call (469) 409-4475</a>
+        <a href="#get-estimate" class="lp-btn lp-btn--inline">Get My Free Estimate &rarr;</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream" id="faq">
+    <div class="lp-wrap">
+      <h2>Frequently asked questions</h2>
+      <div class="lp-faq-list">
+        {faqs.map((item, i) => (
+          <details class="lp-faq-item" open={i === 0}>
+            <summary>{item.q}<span class="lp-faq-plus">+</span></summary>
+            <p>{item.a}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="lp-cta-banner">
+    <div class="lp-wrap">
+      <h2>Still Have Questions?</h2>
+      <p>We're happy to answer them in person on your free estimate visit — no pressure, no obligation.</p>
+      <a href="#get-estimate" class="lp-btn lp-btn--inline">Get My Free Estimate &rarr;</a>
+    </div>
+  </section>
+
+  <section class="lp-section lp-section--cream">
+    <div class="lp-wrap" style="text-align:center;">
+      <h2>Get your free estimate</h2>
+      <p style="max-width:520px; margin:0 auto 24px;">Tell us your zip code — we'll follow up to schedule a walkthrough. Estimates are free and good for 30 days.</p>
+      <div style="max-width:480px; margin:0 auto;">
+        <LandingForm
+          source="Google Ads Landing Page"
+          formId="google-ads-form-bottom"
+          ctaLabel="Get My Free Estimate"
+          locationLabel="Zip Code"
+          locationName="zip_code"
+          locationPlaceholder="75024"
+          locationInputMode="numeric"
+          locationPattern="[0-9]{5}"
+          locationMaxLength={5}
+        />
+      </div>
+    </div>
+  </section>
+
+  <div class="lp-mobile-cta-bar">
+    <a href="tel:+14694094475" class="lp-btn lp-btn--outline-dark">Call Now</a>
+    <a href="#get-estimate" class="lp-btn lp-btn--inline">Free Estimate</a>
+  </div>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqJsonLd)} />
 </LandingLayout>
+
+<style>
+  /* Page-scoped styles for the new sections on this page only — the
+     Facebook Ads page and its LandingForm instances are unaffected. */
+  .lp-cta-banner {
+    background: var(--lp-spruce);
+    color: #fff;
+    text-align: center;
+    padding: 44px 0;
+  }
+  .lp-cta-banner h2 { color: #fff; margin-bottom: 8px; }
+  .lp-cta-banner p { opacity: 0.88; max-width: 560px; margin: 0 auto 22px; }
+  .lp-cta-banner-actions { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+  .lp-btn--inline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    background: var(--lp-gold);
+    color: var(--lp-ink);
+    font-family: var(--lp-font-body);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+  }
+  .lp-btn--inline:hover { background: var(--lp-gold-hover); }
+  .lp-btn--outline {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border: 2px solid #fff;
+    color: #fff;
+    font-family: var(--lp-font-body);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+  }
+  .lp-btn--outline-dark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 13px 16px;
+    border: 2px solid var(--lp-spruce);
+    color: var(--lp-spruce);
+    font-family: var(--lp-font-body);
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+    flex: 1;
+  }
+
+  .lp-why-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 24px;
+  }
+  @media (max-width: 760px) {
+    .lp-why-grid { grid-template-columns: 1fr; }
+  }
+  .lp-why-item h3 { font-family: var(--lp-font-body); font-weight: 700; font-size: 1.05rem; margin-bottom: 6px; }
+  .lp-why-item p { font-size: 0.95rem; opacity: 0.85; margin: 0; }
+
+  .lp-faq-list { max-width: 760px; margin: 24px auto 0; }
+  .lp-faq-item {
+    border-bottom: 1px solid #e4dcc7;
+    padding: 4px 0;
+  }
+  .lp-faq-item summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 2px;
+    font-weight: 700;
+    color: var(--lp-spruce);
+  }
+  .lp-faq-item summary::-webkit-details-marker { display: none; }
+  .lp-faq-plus {
+    flex-shrink: 0;
+    width: 24px; height: 24px;
+    border: 2px solid var(--lp-gold);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    transition: transform 0.2s ease;
+  }
+  .lp-faq-item[open] .lp-faq-plus { transform: rotate(45deg); }
+  .lp-faq-item p { padding: 0 2px 18px; margin: 0; opacity: 0.85; }
+
+  .lp-mobile-cta-bar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 60;
+    display: none;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #fff;
+    border-top: 1px solid #e4dcc7;
+    box-shadow: 0 -6px 18px rgba(0,0,0,0.12);
+  }
+  @media (max-width: 720px) {
+    .lp-mobile-cta-bar { display: flex; }
+  }
+</style>
