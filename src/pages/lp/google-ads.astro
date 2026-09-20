@@ -60,6 +60,43 @@ const faqJsonLd = {
   description="Professional LED holiday lighting installation, maintenance, take-down, and storage for North Dallas homes. Free estimate, licensed and insured crews."
   campaignLabel="Google Ads"
 >
+  <Fragment slot="head-extra">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18460075729"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-18460075729');
+    </script>
+
+    <!-- Event snippet for "Submit lead form" conversion, fired from LandingForm.astro
+         only when its captcha check passes and the submit actually proceeds. -->
+    <script>
+      function gtag_report_conversion(url) {
+        var callback = function () {
+          if (typeof(url) != 'undefined') {
+            window.location = url;
+          }
+        };
+        gtag('event', 'conversion', {
+            'send_to': 'AW-18460075729/SMrXCJaUmPwcENHNueJE',
+            'value': 1.0,
+            'currency': 'USD',
+            'event_callback': callback
+        });
+        return false;
+      }
+    </script>
+
+    <!-- Phone call conversion tracking (Google Forwarding Number swap) -->
+    <script>
+      gtag('config', 'AW-18460075729/bGeoCMS4ufwcENHNueJE', {
+        'phone_conversion_number': '(469) 409-4475'
+      });
+    </script>
+  </Fragment>
+
   <section class="lp-hero lp-hero--photo" style="background-image: url('/images/companycam/01-project_111923238_08102026_2041.jpeg');" id="get-estimate">
     <div class="lp-wrap lp-hero-grid">
       <div>
