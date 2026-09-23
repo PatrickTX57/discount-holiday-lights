@@ -62,8 +62,8 @@ const faqJsonLd = {
 >
   <Fragment slot="head-extra">
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18460075729"></script>
-    <script>
+    <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=AW-18460075729"></script>
+    <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -72,7 +72,7 @@ const faqJsonLd = {
 
     <!-- Event snippet for "Submit lead form" conversion, fired from LandingForm.astro
          only when its captcha check passes and the submit actually proceeds. -->
-    <script>
+    <script is:inline>
       function gtag_report_conversion(url) {
         var callback = function () {
           if (typeof(url) != 'undefined') {
@@ -90,7 +90,7 @@ const faqJsonLd = {
     </script>
 
     <!-- Phone call conversion tracking (Google Forwarding Number swap) -->
-    <script>
+    <script is:inline>
       gtag('config', 'AW-18460075729/bGeoCMS4ufwcENHNueJE', {
         'phone_conversion_number': '(469) 409-4475'
       });
