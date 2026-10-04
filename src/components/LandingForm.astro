@@ -83,11 +83,17 @@ const accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY ?? '';
       if (!captchaResponse || !captchaResponse.value) {
         e.preventDefault();
         if (status) status.textContent = 'Please complete the captcha before submitting — thanks!';
-      } else if (typeof window.gtag_report_conversion === 'function') {
-        // Defined only on the Google Ads landing page (see google-ads.astro's
-        // head-extra block) — a no-op here on the Facebook Ads page, so leads
-        // from that page never get counted as Google Ads conversions.
-        window.gtag_report_conversion();
+      } else {
+        // Meta Pixel "Lead" event (pixel loaded site-wide via MetaPixel.astro).
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', { content_name: form.querySelector('input[name="lead_source"]')?.value });
+        }
+        if (typeof window.gtag_report_conversion === 'function') {
+          // Defined only on the Google Ads landing page (see google-ads.astro's
+          // head-extra block) — a no-op here on the Facebook Ads page, so leads
+          // from that page never get counted as Google Ads conversions.
+          window.gtag_report_conversion();
+        }
       }
     });
   }
