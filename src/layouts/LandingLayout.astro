@@ -1,4 +1,5 @@
 ---
+import MetaPixel from '../components/MetaPixel.astro';
 // Standalone layout for paid-traffic landing pages (Google Ads / Facebook Ads).
 // Deliberately excludes site nav, footer links, and gallery/service-area pages —
 // these are conversion-focused, single-purpose pages meant to be reached only via
@@ -253,6 +254,7 @@ const { title, description } = Astro.props;
         text-align: center;
       }
     </style>
+    <MetaPixel />
     <slot name="head-extra" />
   </head>
   <body>
